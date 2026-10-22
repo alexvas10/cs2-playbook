@@ -1,0 +1,45 @@
+[project]
+name = "csanalysis"
+version = "0.1.0"
+description = "Machine learning analytics for CS2 pro demos: site win rates, duel positions, smoke impact, economy decisions."
+readme = "README.md"
+authors = [
+    { name = "alexvas10", email = "64383825+alexvas10@users.noreply.github.com" }
+]
+requires-python = ">=3.12"
+dependencies = [
+    "demoparser2>=0.42.0",
+    "numpy>=2.5.4",
+    "pandas>=3.1.0",
+    "plotly>=7.1.0",
+    "pyarrow>=26.0.0",
+    "rich>=15.0.0",
+    "scikit-learn>=1.9.1",
+    "scipy>=1.18.1",
+    "typer>=0.27.3",
+]
+
+[project.scripts]
+csa = "csanalysis.cli:app"
+
+[build-system]
+requires = ["uv_build>=0.13.4,<0.14.0"]
+build-backend = "uv_build"
+
+[dependency-groups]
+dev = [
+    "pytest>=9.1.1",
+    "ruff>=0.17.1",
+]
+
+[tool.ruff]
+line-length = 120
+target-version = "py312"
+
+[tool.ruff.lint]
+select = ["E", "F", "W", "I", "UP", "B", "SIM"]
+ignore = ["E731"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-q"
